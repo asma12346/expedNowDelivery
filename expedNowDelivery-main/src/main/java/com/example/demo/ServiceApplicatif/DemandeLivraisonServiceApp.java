@@ -13,6 +13,9 @@ import com.example.demo.Mapper.UserMapper;
 import com.example.demo.ModelDomain.User;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class DemandeLivraisonServiceApp {
 
     private final DemandeLivraisonServiceMetier demandeLivraisonServiceMetier;

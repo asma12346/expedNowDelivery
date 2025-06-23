@@ -146,7 +146,7 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
           @Override
           public List<DemandeLivraison> getByUserId(Long userId) {
 
-            List<DemandeLivraison> demandes= demandeLivraisonRepository.findByUserId(userId);
+            List<DemandeLivraison> demandes= demandeLivraisonRepository.findByClientId(userId);
                  
             if(demandes == null || demandes.isEmpty()){
 

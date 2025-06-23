@@ -14,10 +14,11 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 public class Colis {
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-private long id;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
+
 private String description;
 
 private String destination;
@@ -30,6 +31,14 @@ private FragiliteColis fragiliteColis;
 @JoinColumn(name = "demandeDeLivrasion_id")
 private DemandeLivraison demandeDeLivraison;
 
+
+ public Colis(String description, String destination, String adresseDépart,FragiliteColis fragiliteColis, DemandeLivraison demandeDeLivraison) {
+        this.description = description;
+        this.destination = destination;
+        this.adresseDépart = adresseDépart;
+        this.fragiliteColis = fragiliteColis;
+        this.demandeDeLivraison = demandeDeLivraison;
+    }
 
 
 

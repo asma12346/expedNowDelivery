@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demo.ModelDomain.DemandeLivraison;
 import com.example.demo.ModelDomain.DemandeLivraisonStatus;
 import com.example.demo.ModelDomain.Livraison;
@@ -15,9 +17,18 @@ import com.example.demo.ModelDomain.UserRole;
 import com.example.demo.repository.DemandeLivraisonRepository;
 import com.example.demo.repository.LivraisonRepository;
 import com.example.demo.repository.UserRepository;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import com.example.demo.ServiceMetier.*;
 
-public class LivraisonServiceMetierImp {
+
+@Getter
+@Setter
+@Service
+public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
+{
 
   private final DemandeLivraisonServiceMetier demandeLivraison;
   private final LivraisonRepository livraisonRepository;

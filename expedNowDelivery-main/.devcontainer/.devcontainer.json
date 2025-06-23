@@ -1,12 +1,11 @@
 {
   "name": "Java 17 + Java 24 Dev",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "postCreateCommand": "bash -c 'source /usr/local/sdkman/bin/sdkman-init.sh && \
-sdk install java 24.0.1-amzn && \
-sdk install java 17.0.15-ms && \
-sdk default java 17.0.15-ms && \
-ln -sf /usr/local/sdkman/candidates/java/17.0.15-ms /usr/local/sdkman/candidates/java/current && \
-java -version && mvn -version'",
+  "postCreateCommand": "bash -c 'source /usr/local/sdkman/bin/sdkman-init.sh &&\\nsdk install java 24.0.1-amzn &&\\nsdk install java 17.0.15-ms &&\\nsdk default java 17.0.15-ms &&\\nln -sf /usr/local/sdkman/candidates/java/17.0.15-ms /usr/local/sdkman/candidates/java/current &&\\njava -version && mvn -version'",
+
+
+
+  "postStartCommand": "echo '\n# Initialiser SDKMAN et utiliser Java 17 par défaut\nsource /usr/local/sdkman/bin/sdkman-init.sh\nsdk use java 17.0.15-ms\n' >> ~/.bashrc",
   "customizations": {
     "vscode": {
       "settings": {
@@ -23,5 +22,6 @@ java -version && mvn -version'",
   },
   "remoteUser": "codespace"
 }
+
 
 

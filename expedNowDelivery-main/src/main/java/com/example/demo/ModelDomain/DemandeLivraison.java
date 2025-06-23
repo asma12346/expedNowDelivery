@@ -1,6 +1,9 @@
 package com.example.demo.ModelDomain;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.ModelDomain.DemandeLivraisonStatus;
@@ -30,6 +33,7 @@ public class DemandeLivraison {
     @GeneratedValue
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private DemandeLivraisonStatus status;
 
     private LocalDate datecreationdemande;
@@ -40,10 +44,10 @@ public class DemandeLivraison {
 
     
     @OneToMany(mappedBy = "demandeDeLivraison" , cascade = CascadeType.ALL , orphanRemoval = true)
-    private List<Colis> colis;
+    private List<Colis> colis = new ArrayList<>();
 
        
-    @OneToMany(mappedBy = "demandelivraison")
+    @OneToMany(mappedBy = "demandeLivraison")
     private List<Livraison> livraison;
 
     private double latitude;

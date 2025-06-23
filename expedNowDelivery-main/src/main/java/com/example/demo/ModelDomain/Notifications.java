@@ -29,7 +29,7 @@ public class Notifications {
     private NotificationsType notificationTyoe;
 
     @ManyToOne
-    @JoinColumn(name  = "user", nullable = false)
+    @JoinColumn(name  = "user_id", nullable = false)
     private User user;
 
 }

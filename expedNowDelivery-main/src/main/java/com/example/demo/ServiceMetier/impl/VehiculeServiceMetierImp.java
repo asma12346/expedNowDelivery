@@ -22,6 +22,9 @@ import lombok.Setter;
 import com.example.demo.ServiceMetier.UserMetierService;
 
 @Service
+@Getter
+@Setter
+
 public class VehiculeServiceMetierImp  implements VehiculeServiceMetier{
 
     private final VehiculeRepository vehiculeRepository;

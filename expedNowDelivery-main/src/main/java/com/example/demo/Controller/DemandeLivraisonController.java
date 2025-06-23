@@ -3,6 +3,7 @@ import com.example.demo.ServiceApplicatif.DemandeLivraisonServiceApp;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import lombok.NoArgsConstructor;
 
 import java.io.FileNotFoundException;
 import java.net.http.HttpRequest;
@@ -47,7 +48,6 @@ public class DemandeLivraisonController {
 
     
     @PutMapping("/{id}")
-    //pathvariable: recupere un variable dynamique depuia l url 
     public ResponseEntity<DemandeLivraisonDTO> updatedDemande(
         
           @PathVariable Long demandeId,

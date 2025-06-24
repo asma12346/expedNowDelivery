@@ -38,10 +38,9 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
          private UserRepository userrRepository;
          private ColisServiceMetier colisServiceMetier;
          private ColisRepository colisRepository;
-         private LivraisonServiceMetier livraisonServiceMetier;
          private LivraisonRepository livraisonRepository;
 
-   public DemandeLivraisonSMImpl(DemandeLivraisonRepository demandeLivraisonRepository, LivraisonRepository livraisonRepository, LivraisonServiceMetier livraisonServiceMetier,ColisServiceMetier colisServiceMetier,UserRepository userRepository,UserMetierService userMetierService)
+   public DemandeLivraisonSMImpl(DemandeLivraisonRepository demandeLivraisonRepository, LivraisonRepository livraisonRepository,ColisServiceMetier colisServiceMetier,UserRepository userRepository,UserMetierService userMetierService)
 
           {
            
@@ -49,7 +48,6 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
             this.userMetierService = userMetierService;
             this.userrRepository = userRepository;
             this.colisServiceMetier = colisServiceMetier;
-            this.livraisonServiceMetier= livraisonServiceMetier;
             this.livraisonRepository = livraisonRepository;
             
           }
@@ -62,7 +60,7 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
           
            Livraison livraison = new Livraison();
            livraison.setStatut(LivraisonStatus.CREER);
-           livraison.setDemandeLivraison(savedDemande);
+           livraison.setDemandeDeLivraison(demande);;
            livraisonRepository.save(livraison);
            return savedDemande;
         
@@ -119,7 +117,7 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
                   }
 
                   demandeLivraison.setStatus(DemandeLivraisonStatus.ANNULER);
-                  Livraison livraison=(Livraison) demandeLivraison.getLivraison();
+                  Livraison livraison=(Livraison) demandeLivraison.getLivraisons();
                   livraison.setStatut(LivraisonStatus.ANNULER);
                   saveDemandeLivraison(demandeLivraison);
 

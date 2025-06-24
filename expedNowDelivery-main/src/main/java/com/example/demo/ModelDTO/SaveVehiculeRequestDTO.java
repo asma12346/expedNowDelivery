@@ -1,5 +1,10 @@
 package com.example.demo.ModelDTO;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class SaveVehiculeRequestDTO {
 
         private String matricule;

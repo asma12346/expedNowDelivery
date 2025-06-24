@@ -1,9 +1,19 @@
 package com.example.demo.ServiceMetier.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demo.ModelDomain.Colis;
 import com.example.demo.repository.ColisRepository;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import com.example.demo.ServiceMetier.*;
 
+
+@Service
+@Getter
+@Setter
 public class ColisServiceMetierImp implements ColisServiceMetier {
 
     private final ColisRepository colisRepository;

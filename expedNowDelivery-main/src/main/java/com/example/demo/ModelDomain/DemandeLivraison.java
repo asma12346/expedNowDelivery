@@ -47,18 +47,18 @@ public class DemandeLivraison {
     private List<Colis> colis = new ArrayList<>();
 
        
-    @OneToMany(mappedBy = "demandeLivraison")
-    private List<Livraison> livraison;
+   @OneToMany(mappedBy = "demandeDeLivraison", cascade = CascadeType.ALL)
+   private List<Livraison> livraisons = new ArrayList<>();
+
 
     private double latitude;
     private double longitude;
     
-public DemandeLivraison(DemandeLivraisonStatus status,double latitude, double longitude, LocalDate datecreationdemande, User client, List<Colis> colis, List<Livraison> livraison) {
+public DemandeLivraison(DemandeLivraisonStatus status,double latitude, double longitude, LocalDate datecreationdemande, User client, List<Colis> colis) {
     this.status = status;
     this.datecreationdemande = datecreationdemande;
     this.client = client;
     this.colis = colis;
-    this.livraison = livraison;
     this.latitude=latitude;
     this.longitude=longitude;
 }

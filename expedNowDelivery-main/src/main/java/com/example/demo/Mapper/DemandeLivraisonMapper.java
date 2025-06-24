@@ -12,7 +12,7 @@ import com.example.demo.ModelDTO.DemandeLivraisonDTO;
 import com.example.demo.Mapper.ColisMapperr;
 import com.example.demo.Mapper.LivraisonMapper;
 
-@Mapper(componentModel = "spring", uses = {ColisMapperr.class, LivraisonMapper.class})
+@Mapper(componentModel = "spring")
 public interface DemandeLivraisonMapper {
 
     DemandeLivraisonMapper INSTANCE = Mappers.getMapper(DemandeLivraisonMapper.class);

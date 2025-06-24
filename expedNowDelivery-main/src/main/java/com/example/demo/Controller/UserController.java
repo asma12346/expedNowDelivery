@@ -110,7 +110,7 @@ public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId){
 }
 
 @GetMapping("/{role}/getAll")
-public ResponseEntity<List<UserDTO>> getAllUserByRole(@PathVariable UserRole role){
+public ResponseEntity<List<UserDTO>> getAllUserByRole(@PathVariable List<UserRole> role){
   
      List<UserDTO> users = userServiceApplicatif.getAllUserByRole(role);
 

@@ -56,7 +56,7 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
         throw new IllegalStateException("La livraison n'est pas dans un état assignable.");
     }
 
-    DemandeLivraison demande = livraison.getDemandeLivraison();
+    DemandeLivraison demande = livraison.getDemandeDeLivraison();
     if (demande == null) {
         throw new RuntimeException("Aucune demande associée à cette livraison.");
     }
@@ -102,9 +102,9 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
                   }
      
                   livraison.setStatut(LivraisonStatus.ANNULER);
-                  DemandeLivraison demande= livraison.getDemandeLivraison();
+                  DemandeLivraison demande= livraison.getDemandeDeLivraison();
                   demande.setStatus(DemandeLivraisonStatus.ANNULER);
-                  livraison.setDemandeLivraison(demande);
+                  livraison.setDemandeDeLivraison(demande);
                   livraisonRepository.save(livraison);
 
                 }
@@ -127,9 +127,9 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
             throw new RuntimeException("Ce livreur n'est pas assigné à cette livraison.");
           }
           livraison.setStatut(LivraisonStatus.SUCCES);
-          DemandeLivraison demande= livraison.getDemandeLivraison();
+          DemandeLivraison demande= livraison.getDemandeDeLivraison();
           demande.setStatus(DemandeLivraisonStatus.SUCCES);
-          livraison.setDemandeLivraison(demande);
+          livraison.setDemandeDeLivraison(demande);
           livraisonRepository.save(livraison);
 
       }

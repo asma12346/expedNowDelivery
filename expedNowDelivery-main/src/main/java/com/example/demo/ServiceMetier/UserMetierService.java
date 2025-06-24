@@ -18,7 +18,7 @@ public interface UserMetierService {
     User saveClientPro(User user);
     User saveClientEntrp(User user);
     User getUserById(Long id);
-    List<User> getAllUserByRole(UserRole role);
+    List<User> getAllUserByRole(List<UserRole> role);
     void desactiveUser(Long id);
     User activateUser(Long id) ;
     User updateUser(Long id, User updatedUser);

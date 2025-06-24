@@ -1,7 +1,12 @@
+
 package com.example.demo.ServiceApplicatif;
 
 import com.example.demo.Mapper.LivraisonMapper;
 import com.example.demo.ServiceMetier.LivraisonServiceMetier;
+import org.springframework.stereotype.Service;
+
+
+@Service
 
 public class LivraisonServiceApplicatif {
 
@@ -29,3 +34,6 @@ public class LivraisonServiceApplicatif {
    }
 
 }
+
+
+

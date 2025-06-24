@@ -21,7 +21,7 @@ public class LivraisonController {
         this.livraisonServiceApplicatif=livraisonServiceApplicatif;
     }
 
-@PutMapping("{/livraisonId}/changerstatut")
+@PutMapping("/{livraisonId}/changerstatut")
 public ResponseEntity<Void> assignerLivreurProcheEtChangerStatut(@PathVariable Long livrasionId)  
         
         {

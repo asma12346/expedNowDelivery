@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.lang.RuntimeException;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
+import com.example.demo.config.SecurityConfig;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.ModelDomain.User;
@@ -76,7 +77,7 @@ return userRepository.findById(id)
 .orElseThrow(() -> new RuntimeException("user avec ID " + id + " non trouvé"));
 }
 
-public List<User> getAllUserByRole(UserRole role){
+public List<User> getAllUserByRole(List<UserRole> role){
     return userRepository.findAllByRoleIn(role);
    }
 
@@ -127,7 +128,7 @@ public User activateUser(Long id) {
 
 public List<User>  getLivreursdispos(){
 
-        return userRepository.findAllByRoleInDisponibleTrue(
+        return userRepository.findAllByRoleInAndDisponibleTrue(
                 List.of(UserRole.LIVREUR_OCCASIONNEL, UserRole.LIVREUR_PERMANENT)
             );                                  
 }
@@ -157,6 +158,8 @@ private double calculerDistance(double lat1, double lon1, double lat2, double lo
    
         return Optional.ofNullable(userplusProche);
        }
+
+
 
     }
 

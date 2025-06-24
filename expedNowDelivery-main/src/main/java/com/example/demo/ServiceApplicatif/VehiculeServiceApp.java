@@ -2,6 +2,7 @@ package com.example.demo.ServiceApplicatif;
 import java.util.List;
 
 import org.mapstruct.MappingTarget;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.Mapper.VehiculeMapper;
 import com.example.demo.ModelDTO.VehiculeDTO;
@@ -9,6 +10,9 @@ import com.example.demo.ModelDomain.Vehicule;
 import com.example.demo.ServiceMetier.VehiculeServiceMetier;
 import com.example.demo.ModelDTO.SaveVehiculeRequestDTO;
 import com.example.demo.ModelDTO.UpdatevehiculeRequestDTO;
+
+
+@Service
 public class VehiculeServiceApp {
 
     private final VehiculeMapper vehiculeMapper;

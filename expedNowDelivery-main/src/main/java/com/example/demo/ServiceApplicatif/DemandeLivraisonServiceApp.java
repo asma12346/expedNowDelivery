@@ -20,13 +20,11 @@ public class DemandeLivraisonServiceApp {
 
     private final DemandeLivraisonServiceMetier demandeLivraisonServiceMetier;
     private final DemandeLivraisonMapper demandeLivraisonMapper;
-    private final LivraisonMapper livraisonMapper;
     private final UserMapper userMapper;
 
-    public DemandeLivraisonServiceApp(DemandeLivraisonServiceMetier demandeLivraisonServiceMetier,UserMapper userMapper, DemandeLivraisonMapper demandeLivraisonMapper, LivraisonMapper livraisonMapper){
+    public DemandeLivraisonServiceApp(DemandeLivraisonServiceMetier demandeLivraisonServiceMetier,UserMapper userMapper, DemandeLivraisonMapper demandeLivraisonMapper){
         this.demandeLivraisonServiceMetier = demandeLivraisonServiceMetier;
         this.demandeLivraisonMapper = demandeLivraisonMapper;
-        this.livraisonMapper = livraisonMapper;
         this.userMapper = userMapper;
     }
 

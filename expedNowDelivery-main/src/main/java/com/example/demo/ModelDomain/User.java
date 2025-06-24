@@ -37,7 +37,7 @@ public class User {
     private String lastName;
 
     @Column(nullable =  false)
-    private String adress;
+    private String address;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -80,7 +80,7 @@ private boolean active = true;
         this.longitude = longitude;
         this.vehicule =vehicule;
         this.livraisons =livraisons;
-        this.adress = adress;
+        this.address = address;
         this.disponible=disponible;
         this.active = active;
         this.demandesClient=demandesClient;

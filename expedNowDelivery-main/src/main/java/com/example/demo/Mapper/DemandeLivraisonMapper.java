@@ -15,8 +15,6 @@ import com.example.demo.Mapper.LivraisonMapper;
 @Mapper(componentModel = "spring")
 public interface DemandeLivraisonMapper {
 
-    DemandeLivraisonMapper INSTANCE = Mappers.getMapper(DemandeLivraisonMapper.class);
-
     
     DemandeLivraisonDTO toDto(DemandeLivraison demandeLivraison);
     DemandeLivraison toEntity (DemandeLivraisonDTO demandeLivraisonDTO);

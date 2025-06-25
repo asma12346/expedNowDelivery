@@ -29,6 +29,8 @@ public class VehiculeServiceApp {
     public  VehiculeDTO saveVoiture(SaveVehiculeRequestDTO saveVehiculeRequestDTO){
 
         Vehicule vehicule = vehiculeMapper.toEntity(saveVehiculeRequestDTO);
+         System.out.println("Matricule: " + vehicule.getMatricule());
+        System.out.println("NumSerie: " + vehicule.getNumSerie());
         Vehicule vehiculeSaved = vehiculeServiceMetier.saveVoiture(vehicule);
         return vehiculeMapper.toDto(vehiculeSaved);
 

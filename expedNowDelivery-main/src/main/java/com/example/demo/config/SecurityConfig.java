@@ -1,7 +1,9 @@
+
 package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,15 +17,15 @@ import org.springframework.security.core.userdetails.User;
 @Configuration
 public class SecurityConfig {
    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable()) // désactiver CSRF pour les tests
-            .authorizeHttpRequests(auth -> auth
-                .anyRequest().authenticated() // toute requête nécessite une authentification
-            )
-            .httpBasic(httpBasic -> {}); // activer Basic Auth
-        return http.build();
-    }
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf.disable()) // désactiver CSRF pour tests
+        .authorizeHttpRequests(auth -> auth
+            .anyRequest().permitAll()
+        );
+    return http.build();
+}
+    
 
     // ✅ Utilisateur en mémoire
     @Bean
@@ -36,9 +38,9 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(user);
     }
 
-      @Bean
+     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    return new BCryptPasswordEncoder();
+}
 
 }

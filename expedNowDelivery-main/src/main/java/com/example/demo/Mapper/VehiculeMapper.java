@@ -17,16 +17,14 @@ import com.example.demo.ModelDTO.UpdatevehiculeRequestDTO;
 @Mapper(componentModel = "spring")
 public interface VehiculeMapper {
 
-    VehiculeMapper INSTANCE = Mappers.getMapper(VehiculeMapper.class);
-
-    VehiculeDTO toDto(Vehicule vehicule);
+   VehiculeDTO toDto(Vehicule vehicule);
 
     List<VehiculeDTO> toDtoList(List<Vehicule> vehicules);
 
     Vehicule toEntity(VehiculeDTO vehiculeDTO);
 
     Vehicule toEntity(UpdatevehiculeRequestDTO updatedVehiculeDTO);
-    
+   
     Vehicule toEntity(SaveVehiculeRequestDTO saveVehiculeRequestDTO);
 
 }

@@ -34,11 +34,11 @@ public class VehiculeController {
 
    @PostMapping("/")
    public ResponseEntity<VehiculeDTO> saveVehicule(@RequestBody  SaveVehiculeRequestDTO saveVehiculeRequestDTO){
-
-        VehiculeDTO saved = vehiculeServiceApp.saveVoiture(saveVehiculeRequestDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+          VehiculeDTO saved = vehiculeServiceApp.saveVoiture(saveVehiculeRequestDTO);
+         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
 
    }
+
 
    @PutMapping("/{vehiculeId}")
    public ResponseEntity<VehiculeDTO> updateVehicule(@PathVariable Long vehiculeId, @RequestBody UpdatevehiculeRequestDTO updatevehiculeRequestDTO ){

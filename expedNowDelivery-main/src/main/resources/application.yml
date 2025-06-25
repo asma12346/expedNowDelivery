@@ -1,21 +1,24 @@
 spring:
+  application:
+    name: demo
+
+  mvc:
+    favicon:
+      enabled: false
+
+  web:
+    resources:
+      add-mappings: false
+
   datasource:
-    url: jdbc:postgresql://aws-0-eu-west-3.pooler.supabase.com:6543/postgres
+    url: jdbc:postgresql://aws-0-eu-west-3.pooler.supabase.com:6543/postgres?prepareThreshold=0
     username: postgres.zclltwhzdzzyikxwqsbs
     password: asmabenkhalifa2017
     driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 10          # OK - Supabase autorise max 60 connexions
+      maximum-pool-size: 10
       minimum-idle: 2
       idle-timeout: 30000
       max-lifetime: 1800000
       connection-timeout: 20000
-
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
 

@@ -16,7 +16,6 @@ import com.example.demo.ModelDTO.LivraisonDTO;
 public interface ColisMapperr {
 
 
-    ColisMapperr  INSTANCE= Mappers.getMapper(ColisMapperr.class) ;
 
      ColisDTO toDto(Colis entity);
 

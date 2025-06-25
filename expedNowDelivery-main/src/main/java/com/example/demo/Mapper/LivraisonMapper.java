@@ -13,7 +13,6 @@ import com.example.demo.ModelDomain.Livraison;
 public interface LivraisonMapper {
     
 
-    LivraisonMapper INSTANCE = Mappers.getMapper(LivraisonMapper.class);
 
    
     LivraisonDTO toDto(Livraison entity);

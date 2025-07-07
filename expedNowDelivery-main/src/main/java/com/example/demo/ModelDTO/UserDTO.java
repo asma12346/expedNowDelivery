@@ -22,7 +22,7 @@ import lombok.Setter;
     private String lastName;
 
     @NotBlank(message = "L'adresse est obligatoire.")
-     private String adress;
+     private String address;
 
     @Email
     private String email;

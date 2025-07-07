@@ -88,7 +88,7 @@ public ResponseEntity<UserDTO> activateUser(@PathVariable Long userId){
 public ResponseEntity<UserDTO> updateUser(
     
       @PathVariable Long userId,
-      @RequestParam UserDTO userUpdated
+      @RequestParam UserSaveDTO userUpdated
 )
 
 {

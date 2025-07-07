@@ -95,7 +95,6 @@ public User activateUser(Long id) {
         existingUser.setEmail(updatedUser.getEmail());
         existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
         existingUser.setRole(updatedUser.getRole());
-        existingUser.setActive(updatedUser.isActive());
 
         return userRepository.save(existingUser);
     }

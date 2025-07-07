@@ -16,8 +16,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserSaveDTO {
 
-    private Long id;
-
     @NotBlank(message = "Le nom complet est obligatoire.")
     private String firstName;
     
@@ -25,7 +23,7 @@ public class UserSaveDTO {
     private String lastName;
 
     @NotBlank(message = "L'adresse est obligatoire.")
-     private String adress;
+     private String address;
 
     @Email
     private String email;

@@ -77,7 +77,7 @@ public UserDTO activateUser(Long id) {
 }
 
 
-public UserDTO updateUser(Long id, UserDTO userDTOupdated){
+public UserDTO updateUser(Long id, UserSaveDTO userDTOupdated){
     
       User user = userMapper.toEntity(userDTOupdated);
       User userupdated = userMetierService.updateUser(id, user);

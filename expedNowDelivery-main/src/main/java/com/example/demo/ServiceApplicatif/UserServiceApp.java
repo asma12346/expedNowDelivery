@@ -42,53 +42,10 @@ public class UserServiceApp {
         return userMapper.toDto(usersaved);
 
     }
- public UserDTO saveAdmin(UserSaveDTO userDTO){
-            //fixe dans le dto
-            userDTO.setRole(UserRole.ADMIN);
-            //transforme en entity
-            User user = userMapper.toEntity(userDTO);
-            User userSaved = userMetierService.saveUser(user);
-            return userMapper.toDto(userSaved);
-}
 
 
- public UserDTO saveLivreurPermenant(UserDTO userDTO){
-            //fixe dans le dto
-            userDTO.setRole(UserRole.LIVREUR_PERMANENT);
-            //transforme en entity
-            User user = userMapper.toEntity(userDTO);
-            User userSaved = userMetierService.saveUser(user);
-            return userMapper.toDto(userSaved);
-}
 
 
- public UserDTO saveLivreurOccasionnel(UserDTO userDTO){
-    //fixe dans le dto
-    userDTO.setRole(UserRole.LIVREUR_OCCASIONNEL);
-    //transforme en entity
-    User user = userMapper.toEntity(userDTO);
-    User userSaved = userMetierService.saveUser(user);
-    return userMapper.toDto(userSaved);
-}
-
-
- public UserDTO saveClientEntrprise(UserDTO userDTO){
-    //fixe dans le dto
-    userDTO.setRole(UserRole.CLIENT_ENTREPRiSE);
-    //transforme en entity
-    User user = userMapper.toEntity(userDTO);
-    User userSaved = userMetierService.saveUser(user);
-    return userMapper.toDto(userSaved);
-}
-
- public UserDTO saveClientProfessionnel(UserDTO userDTO){
-    //fixe dans le dto
-    userDTO.setRole(UserRole.CLIENT_PROFESSIONNEL);
-    //transforme en entity
-    User user = userMapper.toEntity(userDTO);
-    User userSaved = userMetierService.saveUser(user);
-    return userMapper.toDto(userSaved);
-}
 
 public UserDTO getUserById(Long id) {
 

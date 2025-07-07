@@ -30,6 +30,9 @@ public class UserSaveDTO {
     @Email
     private String email;
     
+    @NotBlank(message = "password obbligatoire")
+    private String password;
+
     @NotBlank(message = "phone number est obligatoire.")
     private String phoneNumber;
     

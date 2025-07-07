@@ -46,31 +46,6 @@ public User saveUser(User user) {
     return userRepository.save(user);
 }
 
-//sauvgarde admin
-public User saveAdmin(User user){
-    user.setRole(UserRole.ADMIN);
-    return saveUser(user);
-}
-
-public User saveLivreurpermenant(User user){
-    user.setRole(UserRole.LIVREUR_PERMANENT);
-    return saveUser(user);
-}
-
-public User saveLivreurOccasionnel(User user){
-    user.setRole(UserRole.LIVREUR_OCCASIONNEL);
-    return saveUser(user);
-}
-
-public User saveClientPro(User user) {
-        user.setRole(UserRole.CLIENT_PROFESSIONNEL);
-        return saveUser(user);
-    }
-
- public User saveClientEntrp(User user) {
-        user.setRole(UserRole.CLIENT_ENTREPRiSE);
-        return saveUser(user);
-    }
 
 public User getUserById(Long id) {
 return userRepository.findById(id)

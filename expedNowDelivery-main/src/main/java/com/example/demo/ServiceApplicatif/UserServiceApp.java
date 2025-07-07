@@ -5,6 +5,7 @@ import com.example.demo.ModelDomain.User;
 import com.example.demo.ModelDomain.UserRole;
 import com.example.demo.Mapper.UserMapper;
 import com.example.demo.ModelDTO.UserDTO;
+import com.example.demo.ModelDTO.UserSaveDTO;
 import com.example.demo.ServiceMetier.UserMetierService;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class UserServiceApp {
 
     
     //Méthode pour enregistrer un user avec un mot de passe encodé
-     public UserDTO saveUser(UserDTO userDTO){
+     public UserDTO saveUser(UserSaveDTO userDTO){
         //convertir en entity 
 
         User  user= userMapper.toEntity(userDTO);
@@ -41,7 +42,7 @@ public class UserServiceApp {
         return userMapper.toDto(usersaved);
 
     }
- public UserDTO saveAdmin(UserDTO userDTO){
+ public UserDTO saveAdmin(UserSaveDTO userDTO){
             //fixe dans le dto
             userDTO.setRole(UserRole.ADMIN);
             //transforme en entity

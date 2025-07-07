@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import com.example.demo.ServiceApplicatif.UserServiceApp;
 import com.example.demo.ModelDomain.UserRole;
 import com.example.demo.ModelDTO.UserDTO;
+import com.example.demo.ModelDTO.UserSaveDTO;
 import com.example.demo.ModelDomain.User;
 
 import java.util.List;
@@ -22,7 +23,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserServiceApp userServiceApplicatif;
@@ -31,11 +32,9 @@ public class UserController {
         this.userServiceApplicatif = userServiceApplicatif;
         }
 
-    @PostMapping("/admin")
-    public  ResponseEntity<UserDTO> saveAdmin(@RequestBody UserDTO userDTO){
-        
-        userDTO.setRole(UserRole.ADMIN);
-        
+    @PostMapping("/")
+    public  ResponseEntity<UserDTO> saveAdmin(@RequestBody UserSaveDTO userDTO){
+                
         UserDTO saved= userServiceApplicatif.saveUser(userDTO);
        
        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
@@ -43,57 +42,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/livreurpermemnant")
-    public ResponseEntity<UserDTO> saveLivreurpermenant(@RequestBody UserDTO userDTO){
-
-        userDTO.setRole(UserRole.LIVREUR_PERMANENT);
-
-        UserDTO saved =userServiceApplicatif.saveUser(userDTO);
-         
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
-                        
-    }
-
-
-    @PostMapping("/livreuroccasionnel")
-
-    public ResponseEntity<UserDTO> saveLivreuroccasionnel(@RequestBody UserDTO userDTO){
-
-        userDTO.setRole(UserRole.LIVREUR_OCCASIONNEL);
-
-        UserDTO saved =userServiceApplicatif.saveUser(userDTO);
-         
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
-                        
-    }
-     
-
-    
-    @PostMapping("/clientEntreprise")
-
-    public ResponseEntity<UserDTO> saveClientEntreprise(@RequestBody UserDTO userDTO){
-
-        userDTO.setRole(UserRole.CLIENT_ENTREPRiSE);
-
-        UserDTO saved =userServiceApplicatif.saveUser(userDTO);
-         
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
-                        
-    }
-     
-
-    @PostMapping("/clientProfessionnel")
-
-    public ResponseEntity<UserDTO> saveLivreurProfessionnel(@RequestBody UserDTO userDTO){
-
-        userDTO.setRole(UserRole.CLIENT_PROFESSIONNEL);
-
-        UserDTO saved =userServiceApplicatif.saveUser(userDTO);
-         
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
-                        
-    }
-     
+   
 @GetMapping("/{userId}")
 public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId){
    try {

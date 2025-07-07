@@ -18,6 +18,7 @@ public class VehiculeDTO {
 
     @NotBlank(message = "Le numero de serie est obligatoire")
     private String numSerie;
+    
     private Long livreurId; // Pour éviter de retourner tout l'objet User
     private boolean disponible;
 

@@ -4,15 +4,18 @@ import com.example.demo.ModelDomain.UserRole;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Data
 @Getter
 @Setter
- public class UserDTO {
+@NoArgsConstructor
+public class UserSaveDTO {
+
     private Long id;
 
     @NotBlank(message = "Le nom complet est obligatoire.")
@@ -27,16 +30,11 @@ import lombok.Setter;
     @Email
     private String email;
     
+    @NotBlank(message = "phone number est obligatoire.")
     private String phoneNumber;
+    
     private UserRole role;
 
-     @NotNull(message = "disponible est obligatoire.")
-    private Boolean disponible;
     
-    private boolean active;
-    private double latitude;
-    private double longitude;
+    
 }
-
-
-

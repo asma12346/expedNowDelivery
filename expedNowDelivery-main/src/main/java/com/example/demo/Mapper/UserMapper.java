@@ -2,6 +2,7 @@ package com.example.demo.Mapper;
 
 
 import com.example.demo.ModelDTO.UserDTO;
+import com.example.demo.ModelDTO.UserSaveDTO;
 import com.example.demo.ModelDomain.User;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserMapper {
     List<UserDTO> toDtoList(List<User> users);
 
     User toEntity(UserDTO dto);
+
+    User toEntity(UserSaveDTO userDto);
 }

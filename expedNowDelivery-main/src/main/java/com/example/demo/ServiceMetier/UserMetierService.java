@@ -12,11 +12,6 @@ public interface UserMetierService {
 
 
     User saveUser(User user);
-    User saveAdmin(User user);
-    User saveLivreurpermenant(User user);
-    User saveLivreurOccasionnel(User user);
-    User saveClientPro(User user);
-    User saveClientEntrp(User user);
     User getUserById(Long id);
     List<User> getAllUserByRole(List<UserRole> role);
     void desactiveUser(Long id);

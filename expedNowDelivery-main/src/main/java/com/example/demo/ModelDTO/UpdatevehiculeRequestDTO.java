@@ -2,21 +2,26 @@ package com.example.demo.ModelDTO;
 
 import com.example.demo.ModelDomain.User;
 
+import jakarta.validation.constraints.NotBlank;
+
 
 
 public class UpdatevehiculeRequestDTO {
 
-    
-     private String matricule;
-     private String numSerie;
-     private Long livreurId;
+   @NotBlank(message = "Le matricule est obligatoire")
+   private String matricule;
+
+    @NotBlank(message = "Le numéro de série est obligatoire")
+    private String numSerie;
 
 
-     public UpdatevehiculeRequestDTO(String matricule , String numSerie  , Long livreurId){
 
-        this.matricule = matricule;
-        this.numSerie = numSerie;
-        this.livreurId = livreurId;
+     public UpdatevehiculeRequestDTO(String matricule , String numSerie ){
+
+      this.matricule = matricule;
+
+      this.numSerie = numSerie;
+
      }
 
 

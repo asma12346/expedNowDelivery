@@ -1,8 +1,7 @@
 package com.example.demo.Mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+
 
 import com.example.demo.ModelDTO.LivraisonDTO;
 import com.example.demo.ModelDomain.Livraison;
@@ -12,9 +11,6 @@ import com.example.demo.ModelDomain.Livraison;
 
 public interface LivraisonMapper {
     
-
-
-   
     LivraisonDTO toDto(Livraison entity);
     Livraison toEntity (LivraisonDTO dto);
 

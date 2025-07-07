@@ -9,8 +9,7 @@ import com.example.demo.ModelDomain.Vehicule;
 import java.util.List;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
+
 import com.example.demo.ModelDTO.SaveVehiculeRequestDTO;
 import com.example.demo.ModelDTO.UpdatevehiculeRequestDTO;
 

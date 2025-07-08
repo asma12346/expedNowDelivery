@@ -7,6 +7,7 @@ import com.example.demo.Mapper.UserMapper;
 import com.example.demo.ModelDTO.UserDTO;
 import com.example.demo.ModelDTO.UserSaveDTO;
 import com.example.demo.ServiceMetier.UserMetierService;
+import com.example.demo.ModelDTO.UserUpdated;
 
 import java.util.List;
 import java.util.Optional;
@@ -77,9 +78,9 @@ public UserDTO activateUser(Long id) {
 }
 
 
-public UserDTO updateUser(Long id, UserSaveDTO userDTOupdated){
+public UserDTO updateUser(Long id, UserUpdated userUpdatedd){
     
-      User user = userMapper.toEntity(userDTOupdated);
+      User user = userMapper.toEntity(userUpdatedd);
       User userupdated = userMetierService.updateUser(id, user);
       return userMapper.toDto(userupdated);
 }

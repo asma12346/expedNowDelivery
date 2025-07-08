@@ -61,7 +61,8 @@ public class User {
  @OneToMany(mappedBy = "livreur")
  private List<Livraison> livraisons;
 
- private String Cin;
+ @Column(name = "numero_cin")
+ private String cin;
 
   
  private double latitude;
@@ -71,7 +72,7 @@ private boolean disponible = true;
 
 private boolean active = true;
 
-     public User(String address,String password, String firstName,String lastName,String Cin,double latitude, double longitude, String email, String phoneNumber,List<DemandeLivraison> demandesClient,List<Livraison> livraisons, UserRole role,boolean disponible,boolean active,Notifications notifications,Vehicule vehicule) {
+     public User(String address,String password, String firstName,String lastName,String cin,double latitude, double longitude, String email, String phoneNumber,List<DemandeLivraison> demandesClient,List<Livraison> livraisons, UserRole role,boolean disponible,boolean active,Notifications notifications,Vehicule vehicule) {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -87,7 +88,7 @@ private boolean active = true;
         this.disponible=disponible;
         this.active = active;
         this.demandesClient=demandesClient;
-        this.Cin= Cin;
+        this.cin= cin;
     }
 
 

@@ -4,6 +4,8 @@ package com.example.demo.Mapper;
 import com.example.demo.ModelDomain.User;
 import com.example.demo.ModelDTO.UserDTO;
 import com.example.demo.ModelDTO.UserSaveDTO;
+import com.example.demo.ModelDTO.UserUpdated;
+
 import org.mapstruct.Mapper;
 import java.util.List;
 
@@ -17,6 +19,9 @@ public interface UserMapper {
     User toEntity(UserDTO  userDTO);
 
     User toEntity(UserSaveDTO userSaveDto);
+
+    User toEntity(UserUpdated userUpdated);
+
 
 
     

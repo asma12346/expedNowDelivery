@@ -1,6 +1,7 @@
 package com.example.demo.ServiceMetier.impl;
 
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.lang.RuntimeException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.demo.config.SecurityConfig;
 import com.example.demo.exception.NotFoundException;
+import com.example.demo.exception.UserAlreadyExistsException;
 
 import org.springframework.stereotype.Service;
 
@@ -42,8 +44,22 @@ public UserMetierServiceImpl(UserRepository userRepository, PasswordEncoder pass
 
 }
 
-
 public User saveUser(User user) {
+
+    List<String> existingfields = new ArrayList<>();
+
+    if (userRepository.existsByCin(user.getCin())){
+        existingfields.add("Cin");
+    } 
+
+    if (userRepository.existsByEmail(user.getEmail())){
+        existingfields.add("email");
+    }
+
+    if(!existingfields.isEmpty()){
+        throw new UserAlreadyExistsException(existingfields);
+    }
+
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     return userRepository.save(user);
 }
@@ -92,11 +108,10 @@ public User activateUser(Long id) {
 
         // Mise à jour des champs
         existingUser.setFirstName(updatedUser.getFirstName());
-        existingUser.setPassword(updatedUser.getPassword()); // encoder si nécessaire
         existingUser.setLastName(updatedUser.getLastName());
-        existingUser.setEmail(updatedUser.getEmail());
         existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
-        existingUser.setRole(updatedUser.getRole());
+        existingUser.setAddress(updatedUser.getAddress());
+       
 
         return userRepository.save(existingUser);
     }

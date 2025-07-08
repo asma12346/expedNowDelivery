@@ -4,6 +4,7 @@ import com.example.demo.ServiceApplicatif.UserServiceApp;
 import com.example.demo.ModelDomain.UserRole;
 import com.example.demo.ModelDTO.UserDTO;
 import com.example.demo.ModelDTO.UserSaveDTO;
+import com.example.demo.ModelDTO.UserUpdated;
 
 import java.util.List;
 
@@ -86,7 +87,7 @@ public ResponseEntity<UserDTO> activateUser(@PathVariable Long userId){
 public ResponseEntity<UserDTO> updateUser(
     
       @PathVariable Long userId,
-      @RequestParam UserSaveDTO userUpdated
+      @RequestBody UserUpdated userUpdated
 )
 
 {

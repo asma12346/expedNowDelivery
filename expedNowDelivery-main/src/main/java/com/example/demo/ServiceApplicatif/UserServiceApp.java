@@ -54,7 +54,7 @@ public UserDTO getUserById(Long id) {
            
     }
 
-public List<UserDTO> getAllUserByRole(List<UserRole> role){
+public List<UserDTO> getAllUserByRole(UserRole role){
 
         List<User> users = userMetierService.getAllUserByRole(role);
         return userMapper.toDtoList(users);

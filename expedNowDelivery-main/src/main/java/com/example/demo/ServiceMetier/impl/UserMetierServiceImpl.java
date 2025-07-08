@@ -10,6 +10,8 @@ import java.lang.RuntimeException;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.demo.config.SecurityConfig;
+import com.example.demo.exception.NotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.ModelDomain.User;
@@ -52,8 +54,8 @@ return userRepository.findById(id)
 .orElseThrow(() -> new RuntimeException("user avec ID " + id + " non trouvé"));
 }
 
-public List<User> getAllUserByRole(List<UserRole> role){
-    return userRepository.findAllByRoleIn(role);
+public List<User> getAllUserByRole(UserRole role){
+    return userRepository.findAllByRole(role);
    }
 
  
@@ -66,7 +68,7 @@ public void desactiveUser(Long id){
         user.setActive(false); 
         userRepository.save(user);
     } else {
-        throw new RuntimeException("user not found");
+        throw new NotFoundException("user not found");
     }
 
 

@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.exception.BadRequestException;
 import com.example.demo.exception.LivreurDejaAssignerVehiculeException;
 import com.example.demo.exception.NotFoundException;
+import com.example.demo.exception.UserAlreadyExistsException;
 import com.example.demo.exception.VehiculeAlreadyExistException;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -36,4 +39,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<Map<String,Object>> handleUserAlreadyExist(UserAlreadyExistsException ex){
+        Map<String, Object> body = new HashMap<>();
+        body.put("message",ex.getMessage());
+        body.put("fields", ex.getFields());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+    }
 }

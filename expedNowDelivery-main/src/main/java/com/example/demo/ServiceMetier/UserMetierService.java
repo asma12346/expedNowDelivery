@@ -13,7 +13,7 @@ public interface UserMetierService {
 
     User saveUser(User user);
     User getUserById(Long id);
-    List<User> getAllUserByRole(List<UserRole> role);
+    List<User> getAllUserByRole(UserRole role);
     void desactiveUser(Long id);
     User activateUser(Long id) ;
     User updateUser(Long id, User updatedUser);

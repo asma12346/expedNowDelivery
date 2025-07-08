@@ -13,11 +13,12 @@ public interface UserRepository extends JpaRepository<User , Long>{
 
     
     List<User>  findByRoleNot (UserRole role);
-    List<User> findAllByRoleIn(List<UserRole> role);
+    List<User> findAllByRole(UserRole role);
     List<User> findAllByRoleInAndDisponibleTrue(List<UserRole> roles);
-
-
     User findById(User userId);
+    boolean existsByCin(String Cin);
+    boolean existsByEmail(String email);
+
 
 
 

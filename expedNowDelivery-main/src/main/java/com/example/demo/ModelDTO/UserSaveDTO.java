@@ -33,6 +33,9 @@ public class UserSaveDTO {
 
     @NotBlank(message = "phone number est obligatoire.")
     private String phoneNumber;
+
+    private boolean active;
+
     
     private UserRole role;
 

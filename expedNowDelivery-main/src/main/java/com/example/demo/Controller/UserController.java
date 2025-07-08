@@ -4,7 +4,6 @@ import com.example.demo.ServiceApplicatif.UserServiceApp;
 import com.example.demo.ModelDomain.UserRole;
 import com.example.demo.ModelDTO.UserDTO;
 import com.example.demo.ModelDTO.UserSaveDTO;
-import com.example.demo.ModelDomain.User;
 
 import java.util.List;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 
 
@@ -33,7 +31,7 @@ public class UserController {
         }
 
     @PostMapping("/")
-    public  ResponseEntity<UserDTO> saveAdmin(@RequestBody UserSaveDTO userDTO){
+    public  ResponseEntity<UserDTO> saveUser(@RequestBody UserSaveDTO userDTO){
                 
         UserDTO saved= userServiceApplicatif.saveUser(userDTO);
        
@@ -59,7 +57,7 @@ public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId){
 }
 
 @GetMapping("/{role}/getAll")
-public ResponseEntity<List<UserDTO>> getAllUserByRole(@PathVariable List<UserRole> role){
+public ResponseEntity<List<UserDTO>> getAllUserByRole(@PathVariable UserRole role){
   
      List<UserDTO> users = userServiceApplicatif.getAllUserByRole(role);
 

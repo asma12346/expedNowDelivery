@@ -33,6 +33,9 @@ import lombok.Setter;
      @NotNull(message = "disponible est obligatoire.")
     private Boolean disponible;
     
+    @NotBlank(message = "carte CIN est obligatoire")
+    private String Cin;
+    
     private boolean active;
     private double latitude;
     private double longitude;

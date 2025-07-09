@@ -9,6 +9,7 @@ import com.example.demo.ModelDomain.Livraison;
 import com.example.demo.ServiceMetier.DemandeLivraisonServiceMetier;
 import com.example.demo.ModelDTO.DemandeLivraisonDTO;
 import com.example.demo.ModelDTO.LivraisonDTO;
+import com.example.demo.ModelDTO.SaveDemandeRequestDTO;
 import com.example.demo.ModelDTO.UserDTO;
 import com.example.demo.ModelDomain.User;
 import java.util.List;
@@ -28,7 +29,7 @@ public class DemandeLivraisonServiceApp {
         this.userMapper = userMapper;
     }
 
-     public DemandeLivraisonDTO saveDemandeLivraison(DemandeLivraisonDTO demande)
+     public DemandeLivraisonDTO saveDemandeLivraison(SaveDemandeRequestDTO demande)
      {
         //convertir en entity
          DemandeLivraison demandeLivraison = demandeLivraisonMapper.toEntity(demande);

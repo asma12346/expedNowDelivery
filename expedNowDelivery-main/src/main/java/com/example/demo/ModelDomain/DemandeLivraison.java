@@ -53,17 +53,29 @@ public class DemandeLivraison {
 
     private double latitude;
     private double longitude;
-    
-public DemandeLivraison(DemandeLivraisonStatus status,double latitude, double longitude, LocalDate datecreationdemande, User client, List<Colis> colis) {
+
+
+    public DemandeLivraison(
+    DemandeLivraisonStatus status,
+    double latitude,
+    double longitude,
+    LocalDate datecreationdemande,
+    User client,
+    List<Colis> colis,
+    List<Livraison> livraisons
+) {
     this.status = status;
+    this.latitude = latitude;
+    this.longitude = longitude;
     this.datecreationdemande = datecreationdemande;
     this.client = client;
-    this.colis = colis;
-    this.latitude=latitude;
-    this.longitude=longitude;
+    this.colis = colis ;
+    this.livraisons = livraisons ;
+}
+
 }
 
 
 
 
-}
+

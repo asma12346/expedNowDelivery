@@ -13,6 +13,7 @@ import com.example.demo.exception.VehiculeAlreadyExistException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.VehiculeRepository;
 import com.example.demo.ModelDomain.User;
+import com.example.demo.ModelDomain.UserRole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +129,11 @@ public class VehiculeServiceMetierImp  implements VehiculeServiceMetier{
 
       //recuperer livreur
       User livreur = userRepository.findById(livreurId).orElseThrow(() -> new NotFoundException("livreur introuvable"));
+
+      if (livreur.getRole() != UserRole.LIVREUR_PERMANENT &&  livreur.getRole() != UserRole.LIVREUR_OCCASIONNEL){
+         
+           throw new BadRequestException("Cet utilisateur n'est pas un livreur");
+      }
 
       //verifie si le livreur a deja un vehicule
       if (livreur.getVehicule() != null){

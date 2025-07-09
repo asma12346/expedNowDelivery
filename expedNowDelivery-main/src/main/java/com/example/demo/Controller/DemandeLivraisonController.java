@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.ModelDTO.DemandeLivraisonDTO;
 import com.example.demo.ModelDTO.LivraisonDTO;
+import com.example.demo.ModelDTO.SaveDemandeRequestDTO;
 import com.example.demo.ModelDomain.DemandeLivraison;
 
 @Validated
@@ -37,10 +38,10 @@ public class DemandeLivraisonController {
         this.demandeLivraisonServiceApp = demandeLivraisonServiceApp;
     }
 
-    @PostMapping("/savedemande")
-    public ResponseEntity<DemandeLivraisonDTO> saveDemandeLivraison(@RequestBody @Valid DemandeLivraisonDTO demandeLivraisonDTO){
+    @PostMapping("/")
+    public ResponseEntity<DemandeLivraisonDTO> saveDemandeLivraison(@RequestBody @Valid SaveDemandeRequestDTO saveDemandeRequestDTO){
           
-         DemandeLivraisonDTO savedDemande = demandeLivraisonServiceApp.saveDemandeLivraison(demandeLivraisonDTO);
+         DemandeLivraisonDTO savedDemande = demandeLivraisonServiceApp.saveDemandeLivraison(saveDemandeRequestDTO);
          return ResponseEntity.status(HttpStatus.CREATED).body(savedDemande);
       
         }

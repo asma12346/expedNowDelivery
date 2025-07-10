@@ -7,7 +7,9 @@ import com.example.demo.ModelDomain.DemandeLivraisonStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -19,12 +21,13 @@ import jakarta.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DemandeLivraisonDTO {
-    
-    private Long id;
 
+     @NotBlank(message = "champ obligatoire")
+    private String destinataire;
 
-    @NotNull(message = "dateCreationDemande is mandatory")
-    private LocalDate dateCreationDemande;
+    @NotBlank(message = "champ obligatoire")
+    private String   adresseDepart;
+
     
     @NotNull(message = "clientId is mandatory")
     private Long clientId; 
@@ -32,9 +35,6 @@ public class DemandeLivraisonDTO {
     @NotEmpty(message = "colis cannot empty")
     @Valid
     private List<ColisDTO> colis;
-
-
-    private DemandeLivraisonStatus status;
 
    @NotNull
     private double latitude;

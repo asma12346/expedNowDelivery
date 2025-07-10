@@ -1,12 +1,15 @@
 package com.example.demo.Controller;
 import com.example.demo.ServiceApplicatif.DemandeLivraisonServiceApp;
+import com.example.demo.ServiceMetier.ColisServiceMetier;
+import com.example.demo.ServiceMetier.UserMetierService;
+import com.example.demo.repository.ColisRepository;
+import com.example.demo.repository.DemandeLivraisonRepository;
+import com.example.demo.repository.UserRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.NoArgsConstructor;
 
-import java.io.FileNotFoundException;
-import java.net.http.HttpRequest;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -21,11 +24,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.ModelDTO.DemandeLivraisonDTO;
-import com.example.demo.ModelDTO.LivraisonDTO;
-import com.example.demo.ModelDTO.SaveDemandeRequestDTO;
+import com.example.demo.ModelDomain.Colis;
 import com.example.demo.ModelDomain.DemandeLivraison;
+import com.example.demo.ModelDomain.DemandeLivraisonStatus;
+import com.example.demo.ModelDomain.User;
 
 @Validated
 @RestController
@@ -34,14 +37,23 @@ public class DemandeLivraisonController {
 
     private final DemandeLivraisonServiceApp demandeLivraisonServiceApp;
 
-    public DemandeLivraisonController(DemandeLivraisonServiceApp demandeLivraisonServiceApp){
+    private final DemandeLivraisonRepository demandeLivraisonRepository;
+    private final ColisRepository colisRepository;
+
+    public DemandeLivraisonController(
+        DemandeLivraisonServiceApp demandeLivraisonServiceApp,
+        DemandeLivraisonRepository demandeLivraisonRepository,
+        ColisRepository colisRepository
+        ){
         this.demandeLivraisonServiceApp = demandeLivraisonServiceApp;
+        this.demandeLivraisonRepository = demandeLivraisonRepository;
+        this.colisRepository = colisRepository;
     }
 
     @PostMapping("/")
-    public ResponseEntity<DemandeLivraisonDTO> saveDemandeLivraison(@RequestBody @Valid SaveDemandeRequestDTO saveDemandeRequestDTO){
+    public ResponseEntity<DemandeLivraisonDTO> saveDemandeLivraison(@RequestBody @Valid DemandeLivraisonDTO demandeLivraisonDTO){
           
-         DemandeLivraisonDTO savedDemande = demandeLivraisonServiceApp.saveDemandeLivraison(saveDemandeRequestDTO);
+         DemandeLivraisonDTO savedDemande = demandeLivraisonServiceApp.saveDemandeLivraison(demandeLivraisonDTO);
          return ResponseEntity.status(HttpStatus.CREATED).body(savedDemande);
       
         }
@@ -80,7 +92,7 @@ public class DemandeLivraisonController {
     }
 
     
-   @GetMapping("/{demandeId}")
+   @GetMapping("/demande/{demandeId}")
    public ResponseEntity<?> getById(@PathVariable Long demandeId)
    {
         
@@ -109,6 +121,35 @@ public class DemandeLivraisonController {
    {
     List<DemandeLivraisonDTO> demandes = demandeLivraisonServiceApp.getAllDemandes();
     return ResponseEntity.ok(demandes);
+    
+   }
+
+
+
+   @PostMapping("/test")
+   public ResponseEntity<Boolean> test()
+   {
+    
+
+    DemandeLivraison d = new DemandeLivraison();
+    d.setStatus(DemandeLivraisonStatus.EN_COURS);
+    d.getId();
+
+    Colis c1 = new Colis();  
+    c1.setDescription("desc1");
+    c1.setDemandeDeLivraison(d);
+
+    d.setColis(List.of(c1));
+    
+    User cl = new User();
+    cl.setId(9L);
+    d.setClient(cl);
+
+
+    demandeLivraisonRepository.save(d);
+
+
+    return ResponseEntity.ok(true);
     
    }
 

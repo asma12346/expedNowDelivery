@@ -19,8 +19,6 @@ import com.example.demo.ServiceMetier.*;
 
 import com.example.demo.ModelDomain.User;
 import com.example.demo.ModelDomain.UserRole;
-import com.example.demo.ServiceMetier.ColisServiceMetier;
-import com.example.demo.ServiceMetier.LivraisonServiceMetier;
 import com.example.demo.exception.NotFoundException;
 
 import java.util.List;
@@ -35,7 +33,7 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
 
     private DemandeLivraisonRepository demandeLivraisonRepository;
         private UserMetierService userMetierService;
-         private UserRepository userrRepository;
+         private UserRepository userRepository;
          private ColisServiceMetier colisServiceMetier;
          private ColisRepository colisRepository;
          private LivraisonRepository livraisonRepository;
@@ -46,30 +44,39 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
            
             this.demandeLivraisonRepository = demandeLivraisonRepository;
             this.userMetierService = userMetierService;
-            this.userrRepository = userRepository;
+            this.userRepository = userRepository;
             this.colisServiceMetier = colisServiceMetier;
             this.livraisonRepository = livraisonRepository;
             
           }
 
-          @Transactional
+         @Transactional 
     public DemandeLivraison saveDemandeLivraison(DemandeLivraison demande)
           {
-           demande.setStatus(DemandeLivraisonStatus.En_ATTENTE);
-           DemandeLivraison savedDemande = demandeLivraisonRepository.save(demande);
-          
-           Livraison livraison = new Livraison();
-           livraison.setStatut(LivraisonStatus.CREER);
-           livraison.setDemandeDeLivraison(demande);;
-           livraisonRepository.save(livraison);
-           return savedDemande;
-        
+            demande.setStatus(DemandeLivraisonStatus.En_ATTENTE);
+
+             DemandeLivraison demandesaved = demandeLivraisonRepository.save(demande);
+             demandesaved.getId();
+             demandesaved.getClient();
+
+
+             Colis colis =  new Colis();
+             colis.getDescription();
+             colis.getFragiliteColis();
+             colis.setDemandeDeLivraison(demandesaved);
+             
+ 
+              Colis colissaved = colisRepository.save(colis);
+
+
+             demande.setColis(List.of(colissaved));
+
+
+            return demande;
+
           }
-  
-  
-          
-     
-     public DemandeLivraison updateDemande(Long id, DemandeLivraison updatedDemande) {  
+       
+            public DemandeLivraison updateDemande(Long id, DemandeLivraison updatedDemande) {  
 
         return demandeLivraisonRepository.findById(id)
         .map(existing -> {
@@ -92,14 +99,13 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
         })
         .orElseThrow(() -> new RuntimeException("Demande de livraison non trouvée avec l'ID : " + id));
 }
-        
-           
+    
 
       public void annulerDemandeParClient(Long demandeId, Long  userId ) {
     
         DemandeLivraison   demandeLivraison = demandeLivraisonRepository.findById(demandeId).orElseThrow(() -> new RuntimeException("Demande introuvable"));
         
-        User    user=userrRepository.findById(userId).orElseThrow(() -> new RuntimeException("user introuvable"));
+        User    user=userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user introuvable"));
 
 
               if (!Set.of(UserRole.CLIENT_ENTREPRiSE, UserRole.CLIENT_PROFESSIONNEL).contains(user.getRole())) {

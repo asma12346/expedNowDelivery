@@ -17,21 +17,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.example.demo.ModelDomain.DemandeLivraisonStatus;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class DemandeLivraison {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     @Enumerated(EnumType.STRING)
     private DemandeLivraisonStatus status;
@@ -49,6 +50,9 @@ public class DemandeLivraison {
        
    @OneToMany(mappedBy = "demandeDeLivraison", cascade = CascadeType.ALL)
    private List<Livraison> livraisons = new ArrayList<>();
+
+   private String destinataire;
+    private String   adresseDepart;
 
 
     private double latitude;

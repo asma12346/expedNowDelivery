@@ -1,4 +1,5 @@
 package com.example.demo.ModelDomain;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,13 +18,11 @@ public class Colis {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
+
 private Long id;
 
 private String description;
 
-private String destination;
-
-private String adresseDépart;
 
 private FragiliteColis fragiliteColis;
 
@@ -32,10 +31,8 @@ private FragiliteColis fragiliteColis;
 private DemandeLivraison demandeDeLivraison;
 
 
- public Colis(String description, String destination, String adresseDépart,FragiliteColis fragiliteColis, DemandeLivraison demandeDeLivraison) {
+ public Colis(String description,FragiliteColis fragiliteColis, DemandeLivraison demandeDeLivraison) {
         this.description = description;
-        this.destination = destination;
-        this.adresseDépart = adresseDépart;
         this.fragiliteColis = fragiliteColis;
         this.demandeDeLivraison = demandeDeLivraison;
     }

@@ -29,8 +29,6 @@ public class ColisServiceMetierImp implements ColisServiceMetier {
 
          return colisRepository.findById(id)
          .map(existing -> {
-            existing.setAdresseDépart(updatedColis.getAdresseDépart());
-            existing.setDestination(updatedColis.getDestination());
             existing.setDescription(updatedColis.getDescription());
             existing.setFragiliteColis(updatedColis.getFragiliteColis());
 

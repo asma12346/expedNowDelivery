@@ -16,7 +16,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +29,7 @@ public class DemandeLivraisonDTO {
 
     
     @NotNull(message = "clientId is mandatory")
-    private Long client_id; 
+    private Long clientId; 
 
     @NotEmpty(message = "colis cannot empty")
     @Valid

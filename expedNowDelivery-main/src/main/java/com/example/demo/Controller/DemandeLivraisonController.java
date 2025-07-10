@@ -126,14 +126,13 @@ public class DemandeLivraisonController {
 
 
 
-   @PostMapping("/test")
-   public ResponseEntity<Boolean> test()
+   @GetMapping("/test")
+   public ResponseEntity<DemandeLivraison> test()
    {
     
 
     DemandeLivraison d = new DemandeLivraison();
     d.setStatus(DemandeLivraisonStatus.EN_COURS);
-    d.getId();
 
     Colis c1 = new Colis();  
     c1.setDescription("desc1");
@@ -146,10 +145,10 @@ public class DemandeLivraisonController {
     d.setClient(cl);
 
 
-    demandeLivraisonRepository.save(d);
+    DemandeLivraison s=demandeLivraisonRepository.save(d);
 
 
-    return ResponseEntity.ok(true);
+    return ResponseEntity.ok(s);
     
    }
 

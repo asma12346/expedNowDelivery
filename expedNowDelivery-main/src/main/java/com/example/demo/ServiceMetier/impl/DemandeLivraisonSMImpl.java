@@ -55,13 +55,15 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
          @Transactional 
     public DemandeLivraison saveDemandeLivraison(DemandeLivraison demande)
           {
-         User client_id = userRepository.findById(demande.getClient()).orElseThrow(()-> new  NotFoundException("introuvable"));
+
+         Long clientId = demande.getClient().getId();
+         User client = userRepository.findById(clientId).orElseThrow(()-> new  NotFoundException("introuvable"));
 
             DemandeLivraison newdemande = new DemandeLivraison();
             newdemande.setStatus(DemandeLivraisonStatus.En_ATTENTE);
-            newdemande.setClient(client_id);;
-             newdemande.setAdresse_depart(newdemande.getAdresse_depart());;
-             newdemande.setDestinataire(newdemande.getDestinataire());;
+            newdemande.setClient(client);;
+             newdemande.setAdresse_depart(demande.getAdresse_depart());;
+             newdemande.setDestinataire(demande.getDestinataire());;
             newdemande.setDatecreationdemande(LocalDate.now());
 
                

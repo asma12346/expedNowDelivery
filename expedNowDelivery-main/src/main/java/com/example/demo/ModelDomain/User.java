@@ -15,6 +15,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.example.demo.ModelDomain.Livraison;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "users")
@@ -56,6 +58,7 @@ public class User {
   private Vehicule vehicule;
 
   @OneToMany(mappedBy = "client")
+  @JsonIgnore
   private List<DemandeLivraison> demandesClient;
 
  @OneToMany(mappedBy = "livreur")

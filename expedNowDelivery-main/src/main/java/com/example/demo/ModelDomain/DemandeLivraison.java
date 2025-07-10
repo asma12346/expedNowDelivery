@@ -10,6 +10,7 @@ import com.example.demo.ModelDomain.DemandeLivraisonStatus;
 import com.example.demo.ModelDomain.Livraison;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -52,7 +53,9 @@ public class DemandeLivraison {
    private List<Livraison> livraisons = new ArrayList<>();
 
    private String destinataire;
-    private String   adresseDepart;
+   
+   @Column(name = "adresse_depart")
+    private String   adresse_depart;
 
 
     private double latitude;

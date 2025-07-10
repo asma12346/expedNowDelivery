@@ -26,11 +26,11 @@ public class DemandeLivraisonDTO {
     private String destinataire;
 
     @NotBlank(message = "champ obligatoire")
-    private String   adresseDepart;
+    private String   adresse_depart;
 
     
     @NotNull(message = "clientId is mandatory")
-    private Long clientId; 
+    private Long client_id; 
 
     @NotEmpty(message = "colis cannot empty")
     @Valid

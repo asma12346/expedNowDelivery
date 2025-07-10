@@ -23,6 +23,8 @@ import com.example.demo.exception.NotFoundException;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -53,26 +55,29 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
          @Transactional 
     public DemandeLivraison saveDemandeLivraison(DemandeLivraison demande)
           {
-            demande.setStatus(DemandeLivraisonStatus.En_ATTENTE);
+         User client_id = userRepository.findById(demande.getClient()).orElseThrow(()-> new  NotFoundException("introuvable"));
 
-             DemandeLivraison demandesaved = demandeLivraisonRepository.save(demande);
-             demandesaved.getId();
-             demandesaved.getClient();
+            DemandeLivraison newdemande = new DemandeLivraison();
+            newdemande.setStatus(DemandeLivraisonStatus.En_ATTENTE);
+            newdemande.setClient(client_id);;
+             newdemande.setAdresse_depart(newdemande.getAdresse_depart());;
+             newdemande.setDestinataire(newdemande.getDestinataire());;
+            newdemande.setDatecreationdemande(LocalDate.now());
 
-
+               
+            List<Colis> listColis = new ArrayList<>();
+            for(Colis c : demande.getColis())
+      {
              Colis colis =  new Colis();
-             colis.getDescription();
-             colis.getFragiliteColis();
-             colis.setDemandeDeLivraison(demandesaved);
-             
+             colis.setDescription(c.getDescription());;
+             colis.setFragiliteColis(c.getFragiliteColis());
+             colis.setDemandeDeLivraison(newdemande);
+             listColis.add(colis);
+     } 
  
-              Colis colissaved = colisRepository.save(colis);
+     demande.setColis(listColis);
 
-
-             demande.setColis(List.of(colissaved));
-
-
-            return demande;
+    return demandeLivraisonRepository.save(demande);
 
           }
        

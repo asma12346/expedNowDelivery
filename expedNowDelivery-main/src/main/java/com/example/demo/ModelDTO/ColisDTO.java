@@ -18,7 +18,6 @@ public class ColisDTO {
     private String description;
 
    
-  @NotEmpty
     private FragiliteColis fragiliteColis;
     
     

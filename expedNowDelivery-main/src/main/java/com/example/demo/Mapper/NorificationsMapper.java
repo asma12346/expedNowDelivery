@@ -7,7 +7,8 @@ import com.example.demo.ModelDomain.Notifications;
 
 @Mapper(componentModel = "spring")
 
-public interface NorificationsMapper {
+public interface NorificationsMapper
+ {
 
 
     NotificationsDTO toDto(Notifications notifications);

@@ -28,17 +28,14 @@ public class DemandeLivraisonDTO {
     private String   adresse_depart;
 
     
-    @NotNull(message = "clientId is mandatory")
     private Long clientId; 
 
     @NotEmpty(message = "colis cannot empty")
     @Valid
     private List<ColisDTO> colis;
 
-   @NotNull
     private double latitude;
     
-   @NotNull
     private double longitude;
 
     

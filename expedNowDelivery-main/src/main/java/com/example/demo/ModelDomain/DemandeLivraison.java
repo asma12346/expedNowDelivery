@@ -59,6 +59,8 @@ public class DemandeLivraison {
    @Column(name = "adresse_depart")
     private String   adresse_depart;
 
+    private String adresse_destinataire;
+
 
     private double latitude;
     private double longitude;

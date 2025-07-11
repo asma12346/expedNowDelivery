@@ -9,7 +9,9 @@ import com.example.demo.ModelDomain.Livraison;
 
 @Mapper(componentModel = "spring")
 
-public interface LivraisonMapper {
+public interface LivraisonMapper 
+
+{
     
     LivraisonDTO toDto(Livraison entity);
     Livraison toEntity (LivraisonDTO dto);

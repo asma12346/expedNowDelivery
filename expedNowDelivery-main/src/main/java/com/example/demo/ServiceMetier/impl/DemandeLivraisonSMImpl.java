@@ -1,7 +1,9 @@
 package com.example.demo.ServiceMetier.impl;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.ModelDomain.Colis;
 import com.example.demo.ModelDomain.DemandeLivraison;
@@ -51,35 +53,19 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
             this.livraisonRepository = livraisonRepository;
             
           }
-
-         @Transactional 
+    
+    @Transactional 
     public DemandeLivraison saveDemandeLivraison(DemandeLivraison demande)
           {
 
-         Long clientId = demande.getClient().getId();
-         User client = userRepository.findById(clientId).orElseThrow(()-> new  NotFoundException("introuvable"));
+            //lier chaque colis a la demande
+            if(demande.getColis() != null){
+   
+                demande.getColis().forEach(c -> c.setDemandeDeLivraison(demande));
+                     
+            }  
 
-            DemandeLivraison newdemande = new DemandeLivraison();
-            newdemande.setStatus(DemandeLivraisonStatus.En_ATTENTE);
-            newdemande.setClient(client);;
-             newdemande.setAdresse_depart(demande.getAdresse_depart());;
-             newdemande.setDestinataire(demande.getDestinataire());;
-            newdemande.setDatecreationdemande(LocalDate.now());
-
-               
-            List<Colis> listColis = new ArrayList<>();
-            for(Colis c : demande.getColis())
-      {
-             Colis colis =  new Colis();
-             colis.setDescription(c.getDescription());;
-             colis.setFragiliteColis(c.getFragiliteColis());
-             colis.setDemandeDeLivraison(newdemande);
-             listColis.add(colis);
-     } 
- 
-     demande.setColis(listColis);
-
-    return demandeLivraisonRepository.save(demande);
+            return demandeLivraisonRepository.save(demande);
 
           }
        

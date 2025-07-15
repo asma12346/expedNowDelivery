@@ -52,7 +52,7 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
     Livraison livraison = livraisonRepository.findById(livraisonId)
             .orElseThrow(() -> new RuntimeException("Livraison introuvable."));
 
-    if (!livraison.getStatut().equals(LivraisonStatus.CREER)) {
+    if (!livraison.getStatus().equals(LivraisonStatus.CREER)) {
         throw new IllegalStateException("La livraison n'est pas dans un état assignable.");
     }
 
@@ -74,7 +74,7 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
         }
 
         livraison.setLivreur(livreur);
-        livraison.setStatut(LivraisonStatus.EN_COURS);
+        livraison.setStatus(LivraisonStatus.EN_COURS);
 
         demande.setStatus(DemandeLivraisonStatus.EN_COURS);
 
@@ -96,12 +96,12 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
              {
                throw new RuntimeException("Rôle non autorisé pour annuler livraison");
              }
-                  if (!Set.of(LivraisonStatus.CREER, LivraisonStatus.EN_COURS).contains(livraison.getStatut())) 
+                  if (!Set.of(LivraisonStatus.CREER, LivraisonStatus.EN_COURS).contains(livraison.getStatus())) 
                   {
                     throw new RuntimeException("status non autorise");
                   }
      
-                  livraison.setStatut(LivraisonStatus.ANNULER);
+                  livraison.setStatus(LivraisonStatus.ANNULER);
                   DemandeLivraison demande= livraison.getDemandeDeLivraison();
                   demande.setStatus(DemandeLivraisonStatus.ANNULER);
                   livraison.setDemandeDeLivraison(demande);
@@ -126,7 +126,7 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
           { 
             throw new RuntimeException("Ce livreur n'est pas assigné à cette livraison.");
           }
-          livraison.setStatut(LivraisonStatus.SUCCES);
+          livraison.setStatus(LivraisonStatus.SUCCES);
           DemandeLivraison demande= livraison.getDemandeDeLivraison();
           demande.setStatus(DemandeLivraisonStatus.SUCCES);
           livraison.setDemandeDeLivraison(demande);

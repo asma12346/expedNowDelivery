@@ -26,9 +26,12 @@ import com.example.demo.exception.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
+
+import javax.naming.LinkRef;
 
 
 @Service
@@ -65,8 +68,19 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
                      
             }  
 
-            return demandeLivraisonRepository.save(demande);
+            demande.setStatus(DemandeLivraisonStatus.En_ATTENTE);
+            DemandeLivraison demandeL = demandeLivraisonRepository.save(demande);
 
+             Livraison livraison = new Livraison();
+
+             LocalDateTime datePrevue = LocalDateTime.now().plusHours(24);
+            
+             livraison.setDatePrevuLivraison(datePrevue);
+             livraison.setDemandeDeLivraison(demandeL);
+             livraison.setStatus(LivraisonStatus.EN_COURS);
+             
+            livraisonRepository.save(livraison);
+            return demandeL;
           }
        
             public DemandeLivraison updateDemande(Long id, DemandeLivraison updatedDemande) {  
@@ -117,7 +131,7 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
 
                   demandeLivraison.setStatus(DemandeLivraisonStatus.ANNULER);
                   Livraison livraison=(Livraison) demandeLivraison.getLivraisons();
-                  livraison.setStatut(LivraisonStatus.ANNULER);
+                  livraison.setStatus(LivraisonStatus.ANNULER);
                   saveDemandeLivraison(demandeLivraison);
 
             }      

@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,9 +32,9 @@ public class Livraison {
       @GeneratedValue(strategy = GenerationType.IDENTITY)
        private Long id;
 
-       private LivraisonStatus statut;
+       private LivraisonStatus status;
 
-       private Date datePrevuLivraison;
+       private LocalDateTime datePrevuLivraison;
 
    @ManyToOne
   @JoinColumn(name = "demande_livraison_id")
@@ -46,9 +47,9 @@ public class Livraison {
    private User livreur;
 
 
-   public Livraison(LivraisonStatus statut, Date datePrevuLivraison, User livreur,DemandeLivraison demandeDeLivraison)
+   public Livraison(LivraisonStatus statut, LocalDateTime datePrevuLivraison, User livreur,DemandeLivraison demandeDeLivraison)
     {
-        this.statut = statut;
+        this.status = status;
         this.datePrevuLivraison = datePrevuLivraison;
         this.livreur = livreur;
         this.demandeDeLivraison = demandeDeLivraison;

@@ -38,7 +38,7 @@ public class DemandeLivraison {
     private int id;
 
     @Enumerated(EnumType.STRING)
-    private DemandeLivraisonStatus status;
+    private DemandeLivraisonStatus status ;
 
     private LocalDate datecreationdemande;
     

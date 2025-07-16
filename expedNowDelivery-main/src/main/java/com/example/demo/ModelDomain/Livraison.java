@@ -2,7 +2,10 @@ package com.example.demo.ModelDomain;
 
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,6 +35,8 @@ public class Livraison {
       @GeneratedValue(strategy = GenerationType.IDENTITY)
        private Long id;
 
+      @Enumerated(EnumType.STRING)
+      @Column(name = "statut")
        private LivraisonStatus status;
 
        private LocalDateTime datePrevuLivraison;
@@ -47,7 +52,7 @@ public class Livraison {
    private User livreur;
 
 
-   public Livraison(LivraisonStatus statut, LocalDateTime datePrevuLivraison, User livreur,DemandeLivraison demandeDeLivraison)
+   public Livraison(LivraisonStatus status, LocalDateTime datePrevuLivraison, User livreur,DemandeLivraison demandeDeLivraison)
     {
         this.status = status;
         this.datePrevuLivraison = datePrevuLivraison;

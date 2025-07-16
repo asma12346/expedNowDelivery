@@ -23,6 +23,11 @@ public class DemandeLivraisonDTO {
 
      @NotBlank(message = "champ obligatoire")
     private String destinataire;
+  
+  
+    @NotBlank(message = "champ obligatoire")
+    private String adresse_destinataire;
+
 
     @NotBlank(message = "champ obligatoire")
     private String   adresse_depart;

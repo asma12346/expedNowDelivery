@@ -1,6 +1,7 @@
 package com.example.demo.ModelDTO;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.example.demo.ModelDomain.LivraisonStatus;
@@ -14,14 +15,16 @@ public class LivraisonDTO {
 
     @NotNull(message = "id obligatoire")
     private Long id;
-   @NotEmpty
-    private LivraisonStatus statut;
+   
+    @NotNull
+    private LivraisonStatus status;
       
     @NotNull(message = "dateCreationDemande is mandatory")
-     private LocalDate datePrevuLivraison;
+     private LocalDateTime datePrevuLivraison;
  
      @NotEmpty
     private Long demandeLivraisonId;  
+    
    @NotNull
     private Long livreurId;
 }

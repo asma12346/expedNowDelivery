@@ -2,6 +2,7 @@
 package com.example.demo.ServiceApplicatif;
 
 import com.example.demo.Mapper.LivraisonMapper;
+import com.example.demo.ModelDomain.Livraison;
 import com.example.demo.ServiceMetier.LivraisonServiceMetier;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class LivraisonServiceApplicatif {
 
 
     public void assignerLivreurEtChangerStatut(Long livraisonId){
+
         livraisonServiceMetier.assignerLivreurProcheEtChangerStatut(livraisonId);
     }
 

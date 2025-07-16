@@ -81,7 +81,7 @@ public class DemandeLivraison {
     this.datecreationdemande = datecreationdemande;
     this.client = client;
     this.colis = colis ;
-    this.livraisons = livraisons ;
+    this.livraisons = livraisons;
 }
 
 }

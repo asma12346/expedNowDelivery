@@ -48,7 +48,7 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
   }
  
 
-      public void assignerLivreurProcheEtChangerStatut(Long livraisonId) {
+      public void assignerLivreurProcheEtChangerStatut(Long livraisonId ) {
     Livraison livraison = livraisonRepository.findById(livraisonId)
             .orElseThrow(() -> new RuntimeException("Livraison introuvable."));
 

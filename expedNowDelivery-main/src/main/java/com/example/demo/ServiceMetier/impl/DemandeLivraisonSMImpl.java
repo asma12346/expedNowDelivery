@@ -77,7 +77,9 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
             
              livraison.setDatePrevuLivraison(datePrevue);
              livraison.setDemandeDeLivraison(demandeL);
-             livraison.setStatus(LivraisonStatus.EN_COURS);
+             livraison.setStatus(LivraisonStatus.CREER);
+            livraison.setLivreur(null); // livreur non encore assigné
+
              
             livraisonRepository.save(livraison);
             return demandeL;

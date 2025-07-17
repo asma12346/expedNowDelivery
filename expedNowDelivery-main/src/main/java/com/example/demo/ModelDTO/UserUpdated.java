@@ -24,6 +24,10 @@ public class UserUpdated {
     @NotBlank(message = "phone number est obligatoire.")
     private String phoneNumber;
 
+     private double latitude;
+
+     private double longitude;
+
     
     
 }

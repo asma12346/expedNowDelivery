@@ -111,6 +111,8 @@ public User activateUser(Long id) {
         existingUser.setLastName(updatedUser.getLastName());
         existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
         existingUser.setAddress(updatedUser.getAddress());
+        existingUser.setLatitude(updatedUser.getLatitude());
+        existingUser.setLongitude(updatedUser.getLongitude());
        
 
         return userRepository.save(existingUser);

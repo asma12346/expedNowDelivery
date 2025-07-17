@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.ServiceApplicatif.LivraisonServiceApplicatif;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/livraisons")
 
 public class LivraisonController {
 
@@ -21,11 +21,11 @@ public class LivraisonController {
         this.livraisonServiceApplicatif=livraisonServiceApplicatif;
     }
 
-@PutMapping("/{livraisonId}/changerstatut")
-public ResponseEntity<Void> assignerLivreurProcheEtChangerStatut(@PathVariable Long livrasionId)  
+@PutMapping("/{livraisonId}/assigner")
+public ResponseEntity<Void> assignerLivreurProcheEtChangerStatut(@PathVariable Long livraisonId)  
         
         {
-            livraisonServiceApplicatif.assignerLivreurEtChangerStatut(livrasionId);
+            livraisonServiceApplicatif.assignerLivreurEtChangerStatut(livraisonId);
             return ResponseEntity.ok().build();
             
         }

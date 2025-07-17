@@ -85,7 +85,7 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
     }
 }
 
-   public void annulerLivraisonParLivreur(Long livraisonId,Long userId){
+   public void annulerLivraisonParLivreur(Long livraisonId,Long userId, CauseAnnulationLivreur cause){
           
         
                  User  user=userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user introuvable"));
@@ -100,13 +100,20 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
                   {
                     throw new RuntimeException("status non autorise");
                   }
-     
+                  if (cause.isCauseClient()){
+                  System.out.println("la faute est de cote client");
                   livraison.setStatus(LivraisonStatus.ANNULER);
                   DemandeLivraison demande= livraison.getDemandeDeLivraison();
                   demande.setStatus(DemandeLivraisonStatus.ANNULER);
                   livraison.setDemandeDeLivraison(demande);
                   livraisonRepository.save(livraison);
+                  }
+                  else{
+                    System.out.println("la faute est de cote livreur");
+                    livraison.setStatus(LivraisonStatus.CREER);
+                    livraisonRepository.save(livraison);
 
+                  }
                 }
 
       public void livraisonAchever(Long livraisonId , Long userId){

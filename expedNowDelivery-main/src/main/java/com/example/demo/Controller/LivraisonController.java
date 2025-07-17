@@ -33,7 +33,7 @@ public ResponseEntity<Void> assignerLivreurProcheEtChangerStatut(@PathVariable L
 
         
 @PutMapping("/{livraisonId}/annuler/")
-public ResponseEntity<Void> annulerLivraisonParLivreur(
+public ResponseEntity<?> annulerLivraisonParLivreur(
      
        @PathVariable Long livraisonId,
        @RequestParam Long userId,
@@ -41,7 +41,10 @@ public ResponseEntity<Void> annulerLivraisonParLivreur(
 )
 {
     livraisonServiceApplicatif.annulerLivraisonParLivreur(livraisonId, userId,cause);
-    return ResponseEntity.ok().build();
+        
+   String message = "La livraison a été annulée pour la raison suivante : " + cause.name().replace('_', ' ').toLowerCase();
+
+    return ResponseEntity.ok(message);
 }
 
 @PutMapping("/{livraisonId}/achever")

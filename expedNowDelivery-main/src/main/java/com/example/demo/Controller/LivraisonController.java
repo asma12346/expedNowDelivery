@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.ServiceApplicatif.LivraisonServiceApplicatif;
+import com.example.demo.ServiceMetier.impl.CauseAnnulationLivreur;
 
 @RestController
 @RequestMapping("/livraisons")
@@ -31,14 +32,15 @@ public ResponseEntity<Void> assignerLivreurProcheEtChangerStatut(@PathVariable L
         }
 
         
-@PutMapping("/{livraisonId}/annuler")
+@PutMapping("/{livraisonId}/annuler/")
 public ResponseEntity<Void> annulerLivraisonParLivreur(
      
        @PathVariable Long livraisonId,
-       @RequestParam Long userId
+       @RequestParam Long userId,
+       @RequestParam  CauseAnnulationLivreur cause
 )
 {
-    livraisonServiceApplicatif.annulerLivraisonParLivreur(livraisonId, userId);
+    livraisonServiceApplicatif.annulerLivraisonParLivreur(livraisonId, userId,cause);
     return ResponseEntity.ok().build();
 }
 

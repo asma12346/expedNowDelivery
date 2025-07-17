@@ -4,6 +4,8 @@ package com.example.demo.ServiceApplicatif;
 import com.example.demo.Mapper.LivraisonMapper;
 import com.example.demo.ModelDomain.Livraison;
 import com.example.demo.ServiceMetier.LivraisonServiceMetier;
+import com.example.demo.ServiceMetier.impl.CauseAnnulationLivreur;
+
 import org.springframework.stereotype.Service;
 
 
@@ -27,8 +29,8 @@ public class LivraisonServiceApplicatif {
         livraisonServiceMetier.assignerLivreurProcheEtChangerStatut(livraisonId);
     }
 
-   public   void annulerLivraisonParLivreur(Long livraisonId,Long userId){
-       livraisonServiceMetier.annulerLivraisonParLivreur(livraisonId, userId);
+   public   void annulerLivraisonParLivreur(Long livraisonId,Long userId, CauseAnnulationLivreur cause){
+       livraisonServiceMetier.annulerLivraisonParLivreur(livraisonId, userId,cause);
    }
 
    public void livraisonAchever(Long livraisonId , Long livreurId){

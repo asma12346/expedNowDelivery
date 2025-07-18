@@ -2,6 +2,7 @@
 package com.example.demo.ServiceApplicatif;
 
 import com.example.demo.Mapper.LivraisonMapper;
+import com.example.demo.ModelDTO.LivraisonEnCoursDTO;
 import com.example.demo.ModelDomain.Livraison;
 import com.example.demo.ServiceMetier.LivraisonServiceMetier;
 import com.example.demo.ServiceMetier.impl.CauseAnnulationLivreur;
@@ -24,10 +25,7 @@ public class LivraisonServiceApplicatif {
     }
 
 
-    public void assignerLivreurEtChangerStatut(Long livraisonId){
-
-        livraisonServiceMetier.assignerLivreurProcheEtChangerStatut(livraisonId);
-    }
+  
 
    public   void annulerLivraisonParLivreur(Long livraisonId,Long userId, CauseAnnulationLivreur cause){
        livraisonServiceMetier.annulerLivraisonParLivreur(livraisonId, userId,cause);
@@ -37,7 +35,14 @@ public class LivraisonServiceApplicatif {
        livraisonServiceMetier.livraisonAchever(livraisonId, livreurId);
    }
 
+
+   public void  livraisonEnCours(Long livraisonId , Long userId,LivraisonEnCoursDTO livraisonEnCoursDTO){
+
+       Livraison livraison = livraisonMapper.toEntityLiv(livraisonEnCoursDTO);
+    livraisonServiceMetier.livraisonEnCours(livraisonId, userId,livraison);
+
 }
 
 
 
+}

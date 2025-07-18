@@ -48,43 +48,7 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
   }
  
 
-      public void assignerLivreurProcheEtChangerStatut(Long livraisonId ) {
-    Livraison livraison = livraisonRepository.findById(livraisonId)
-            .orElseThrow(() -> new RuntimeException("Livraison introuvable."));
-
-    if (!livraison.getStatus().equals(LivraisonStatus.CREER)) {
-        throw new IllegalStateException("La livraison n'est pas dans un état assignable.");
-    }
-
-    DemandeLivraison demande = livraison.getDemandeDeLivraison();
-    if (demande == null) {
-        throw new RuntimeException("Aucune demande associée à cette livraison.");
-    }
-
-    double latitudeClient = demande.getLatitude();
-    double longitudeClient = demande.getLongitude();
-
-    Optional<User> livreurPlusProche = userMetierService.getLivreurDispoEtProche(latitudeClient, longitudeClient);
-
-    if (livreurPlusProche.isPresent()) {
-        User livreur = livreurPlusProche.get();
-
-        if (!Set.of(UserRole.LIVREUR_PERMANENT, UserRole.LIVREUR_OCCASIONNEL).contains(livreur.getRole())) {
-            throw new RuntimeException("Le rôle du livreur n'est pas valide.");
-        }
-
-        livraison.setLivreur(livreur);
-        livraison.setStatus(LivraisonStatus.EN_COURS);
-
-        demande.setStatus(DemandeLivraisonStatus.EN_COURS);
-
-        livraisonRepository.save(livraison);
-        demandeLivraisonRepository.save(demande);
-    } else {
-        throw new RuntimeException("Aucun livreur disponible à proximité.");
-    }
-}
-
+     
    public void annulerLivraisonParLivreur(Long livraisonId,Long userId, CauseAnnulationLivreur cause){
           
         
@@ -116,6 +80,33 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
                   }
                 }
 
+
+    public void livraisonEnCours(Long livraisonId , Long userId,Livraison livraison){
+       
+      {
+         User  livreur=userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user  introuvable"));
+
+        Livraison  livraison1=livraisonRepository.findById(livraisonId).orElseThrow(() -> new RuntimeException("livraison introuvable"));
+
+        
+        if (!Set.of(UserRole.LIVREUR_PERMANENT,UserRole.LIVREUR_OCCASIONNEL).contains(livreur.getRole()))
+         {
+            throw new IllegalArgumentException("Rôle non autorisé pour accepter  livraison");
+          }
+
+          if(livraison.getLivreur() == null || !livraison.getLivreur().getId().equals(userId)){
+            throw new IllegalArgumentException("ce n est pas le livreur assigner");
+          }
+
+          livraison.setStatus(LivraisonStatus.EN_COURS);
+          livraisonRepository.save(livraison1);
+
+      }
+
+
+    }
+
+
       public void livraisonAchever(Long livraisonId , Long userId){
 
         User  livreur=userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user  introuvable"));
@@ -137,6 +128,7 @@ public class LivraisonServiceMetierImp  implements LivraisonServiceMetier
           DemandeLivraison demande= livraison.getDemandeDeLivraison();
           demande.setStatus(DemandeLivraisonStatus.SUCCES);
           livraison.setDemandeDeLivraison(demande);
+          livreur.setDisponible(true);
           livraisonRepository.save(livraison);
 
       }

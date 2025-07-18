@@ -81,10 +81,58 @@ public class DemandeLivraisonSMImpl implements DemandeLivraisonServiceMetier{
             livraison.setLivreur(null); // livreur non encore assigné
 
              
-            livraisonRepository.save(livraison);
-            return demandeL;
+           Livraison livraisonsaved = livraisonRepository.save(livraison);
+
+           try{
+
+               assignerLivreurProcheEtChangerStatut(livraisonsaved.getId());
+              
+           } catch (RuntimeException e) {
+
+                 System.out.println("Aucun livreur assigné automatiquement : " + e.getMessage());
+
+           }
+           
+           return demandeL;
           }
        
+           public void assignerLivreurProcheEtChangerStatut(Long livraisonId ) {
+    Livraison livraison = livraisonRepository.findById(livraisonId)
+            .orElseThrow(() -> new RuntimeException("Livraison introuvable."));
+
+    if (!livraison.getStatus().equals(LivraisonStatus.CREER)) {
+        throw new IllegalStateException("La livraison n'est pas dans un état assignable.");
+    }
+
+    DemandeLivraison demande = livraison.getDemandeDeLivraison();
+    if (demande == null) {
+        throw new RuntimeException("Aucune demande associée à cette livraison.");
+    }
+
+    double latitudeClient = demande.getLatitude();
+    double longitudeClient = demande.getLongitude();
+
+    Optional<User> livreurPlusProche = userMetierService.getLivreurDispoEtProche(latitudeClient, longitudeClient);
+
+    if (livreurPlusProche.isPresent()) {
+        User livreur = livreurPlusProche.get();
+
+        if (!Set.of(UserRole.LIVREUR_PERMANENT, UserRole.LIVREUR_OCCASIONNEL).contains(livreur.getRole())) {
+            throw new RuntimeException("Le rôle du livreur n'est pas valide.");
+        }
+
+        livraison.setLivreur(livreur);
+        livreur.setDisponible(false);
+        livraison.setStatus(LivraisonStatus.EN_COURS);
+
+        demande.setStatus(DemandeLivraisonStatus.EN_COURS);
+
+        livraisonRepository.save(livraison);
+        demandeLivraisonRepository.save(demande);
+    } else {
+        throw new RuntimeException("Aucun livreur disponible à proximité.");
+    }
+}
             public DemandeLivraison updateDemande(Long id, DemandeLivraison updatedDemande) {  
 
         return demandeLivraisonRepository.findById(id)
